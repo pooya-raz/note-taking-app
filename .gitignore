@@ -3,4 +3,10 @@
 
 =======
 out/
+<<<<<<< HEAD
 >>>>>>> 9444c95 (Initial commit)
+=======
+.idea/
+*.iml
+
+>>>>>>> bc3ea7f (Create skeleton for HttpServer)
