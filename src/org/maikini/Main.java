@@ -15,9 +15,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         final var logger = System.getLogger("NoteLogger");
         if ("test".equals(args[0])) {
-            final var noteServiceTest = new NoteServiceTest();
-            noteServiceTest.getNoteShouldReturnEmptyListWhenNoNotesAdded();
-            noteServiceTest.addShouldAddANote();
+            runTests();
             return;
         }
         final var socketAddress = new InetSocketAddress("localhost", 8000);
@@ -26,6 +24,12 @@ public class Main {
         final var bob = new Handler();
         server.createContext("/", bob);
         logger.log(INFO, "Server is up and running at: http:/" + server.getAddress());
+    }
+
+    private static void runTests() {
+        final var noteServiceTest = new NoteServiceTest();
+        noteServiceTest.getNoteShouldReturnEmptyListWhenNoNotesAdded();
+        noteServiceTest.addShouldAddANote();
     }
 }
 
