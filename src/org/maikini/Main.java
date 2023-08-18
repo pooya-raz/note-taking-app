@@ -3,6 +3,7 @@ package org.maikini;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import org.maikini.test.NoteServiceTest;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -13,6 +14,11 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         final var logger = System.getLogger("NoteLogger");
+        if ("test".equals(args[0])) {
+            final var noteServiceTest = new NoteServiceTest();
+            noteServiceTest.getNoteShouldReturnEmptyListWhenNoNotesAdded();
+            return;
+        }
         final var socketAddress = new InetSocketAddress("localhost", 8000);
         final var server = HttpServer.create(socketAddress, 0);
         server.start();
