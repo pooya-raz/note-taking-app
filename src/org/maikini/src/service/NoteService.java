@@ -1,6 +1,6 @@
-package org.maikini.service;
+package org.maikini.src.service;
 
-import org.maikini.model.Note;
+import org.maikini.src.model.Note;
 
 import java.util.ArrayList;
 import java.util.List;
