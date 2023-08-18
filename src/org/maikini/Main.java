@@ -17,6 +17,7 @@ public class Main {
         if ("test".equals(args[0])) {
             final var noteServiceTest = new NoteServiceTest();
             noteServiceTest.getNoteShouldReturnEmptyListWhenNoNotesAdded();
+            noteServiceTest.addShouldAddANote();
             return;
         }
         final var socketAddress = new InetSocketAddress("localhost", 8000);

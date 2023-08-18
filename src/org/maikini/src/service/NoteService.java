@@ -3,7 +3,9 @@ package org.maikini.src.service;
 import org.maikini.src.model.Note;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
 /**
  * This class handles CRUD operations for notes.
  */
@@ -15,24 +17,19 @@ public class NoteService {
 
     /**
      * This method adds a new note.
-     * @param title The title of the note.
-     * @param body The body of the note.
+     * @param note that gets added
+     * @return the added Note
      */
-    public void addNote(String title, String body) {
-        //        😓 append? how do I add a note to the notes List<>? It should take a note and add it. TODO
-    }
-
-    /**
-     * This method adds a new note.
-     */
-    public void add(Note note) {
-        //
+    public Note add(Note note) {
+        notes.add(note);
+        return note;
     }
 
     /**
      * This method returns all notes
+     * @return the collections of notes
      */
-    public List<Note> getNotes() {
+    public Collection<Note> getNotes() {
         return notes;
     }
 }
