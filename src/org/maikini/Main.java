@@ -15,4 +15,5 @@ public class Main {
         server.start();
         logger.info("Server is up and running at: http:/" + server.getAddress());
     }
+
 }
