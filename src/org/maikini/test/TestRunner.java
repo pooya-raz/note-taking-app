@@ -26,7 +26,6 @@ public class TestRunner {
         logger.log(INFO, "Running tests for class: " + testClass.getClass().getName());
         final var beforeEachMethod = getBeforeEachMethod(testClass);
         runTestMethods(testClass, beforeEachMethod);
-        logger.log(INFO, "Tests completed for class: " + testClass.getClass().getName());
     }
 
     private static Method getBeforeEachMethod(Object testClass) {
