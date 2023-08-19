@@ -1,9 +1,9 @@
-package org.maikini;
+package org.maikini.src;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import org.maikini.test.NoteServiceTest;
+import org.maikini.test.testrunner.TestRunner;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -11,11 +11,11 @@ import java.net.InetSocketAddress;
 import static java.lang.System.Logger.Level.INFO;
 
 public class Main {
+    static final System.Logger logger = System.getLogger(Main.class.getName());
 
     public static void main(String[] args) throws IOException {
-        final var logger = System.getLogger("NoteLogger");
         if ("test".equals(args[0])) {
-            runTests();
+            TestRunner.runTests();
             return;
         }
         final var socketAddress = new InetSocketAddress("localhost", 8000);
@@ -24,12 +24,6 @@ public class Main {
         final var bob = new Handler();
         server.createContext("/", bob);
         logger.log(INFO, "Server is up and running at: http:/" + server.getAddress());
-    }
-
-    private static void runTests() {
-        final var noteServiceTest = new NoteServiceTest();
-        noteServiceTest.getNoteShouldReturnEmptyListWhenNoNotesAdded();
-        noteServiceTest.addShouldAddANote();
     }
 }
 
