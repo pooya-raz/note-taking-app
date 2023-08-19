@@ -2,8 +2,8 @@ package org.maikini.test;
 
 import org.maikini.src.model.Note;
 import org.maikini.src.service.NoteService;
-import org.maikini.test.testrunner.BeforeEach;
-import org.maikini.test.testrunner.Test;
+import org.maikini.test.annotation.BeforeEach;
+import org.maikini.test.annotation.Test;
 
 import java.util.Collections;
 import java.util.List;

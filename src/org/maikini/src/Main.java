@@ -3,7 +3,6 @@ package org.maikini.src;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import org.maikini.test.testrunner.TestRunner;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -14,10 +13,6 @@ public class Main {
     static final System.Logger logger = System.getLogger(Main.class.getName());
 
     public static void main(String[] args) throws IOException {
-        if ("test".equals(args[0])) {
-            TestRunner.runTests();
-            return;
-        }
         final var socketAddress = new InetSocketAddress("localhost", 8000);
         final var server = HttpServer.create(socketAddress, 0);
         server.start();

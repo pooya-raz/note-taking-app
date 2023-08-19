@@ -1,4 +1,4 @@
-package org.maikini.test.testrunner;
+package org.maikini.test.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

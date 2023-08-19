@@ -1,9 +1,11 @@
-package org.maikini.test.testrunner;
+package org.maikini.test;
 
-import org.maikini.test.NoteServiceTest;
+import org.maikini.test.annotation.BeforeEach;
+import org.maikini.test.annotation.Test;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.List;
 
 import static java.lang.System.Logger.Level.ERROR;
 import static java.lang.System.Logger.Level.INFO;
@@ -12,20 +14,23 @@ public class TestRunner {
 
     private static final System.Logger logger = System.getLogger(TestRunner.class.getName());
 
+    private static final List<Object> classesToTest = List.of(new NoteServiceTest());
+
     private TestRunner() {}
 
-    public static void runTests() {
-        final var noteServiceTest = new NoteServiceTest();
-        logger.log(
-                INFO, "Running tests for class: " + noteServiceTest.getClass().getName());
-        final var beforeEachMethod = getBeforeEachMethod(noteServiceTest);
-        runTestMethods(noteServiceTest, beforeEachMethod);
-        logger.log(
-                INFO, "Tests completed for class: " + noteServiceTest.getClass().getName());
+    public static void main(String[] args) {
+        classesToTest.forEach(TestRunner::runTest);
     }
 
-    private static Method getBeforeEachMethod(NoteServiceTest noteServiceTest) {
-        return Arrays.stream(noteServiceTest.getClass().getMethods())
+    private static void runTest(Object testClass) {
+        logger.log(INFO, "Running tests for class: " + testClass.getClass().getName());
+        final var beforeEachMethod = getBeforeEachMethod(testClass);
+        runTestMethods(testClass, beforeEachMethod);
+        logger.log(INFO, "Tests completed for class: " + testClass.getClass().getName());
+    }
+
+    private static Method getBeforeEachMethod(Object testClass) {
+        return Arrays.stream(testClass.getClass().getMethods())
                 .filter(method -> method.isAnnotationPresent(BeforeEach.class))
                 .findFirst()
                 .orElse(null);
