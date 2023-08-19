@@ -12,9 +12,13 @@ import static java.lang.System.Logger.Level.INFO;
 
 public class TestRunner {
 
-    private static final System.Logger logger = System.getLogger(TestRunner.class.getName());
-
+    private static final System.Logger logger;
     private static final List<Object> classesToTest = List.of(new NoteServiceTest());
+
+    static {
+        System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tF %1$tT] [%4$-7s] %5$s %n");
+        logger = System.getLogger(TestRunner.class.getName());
+    }
 
     private TestRunner() {}
 
